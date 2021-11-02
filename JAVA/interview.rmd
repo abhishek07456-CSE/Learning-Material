@@ -1,0 +1,178 @@
+Http code
+200 - ok
+201 - created
+202- accespted
+204 - no content
+
+500 server error
+502 bad gateway
+301 found
+
+400 bad request
+401 unuthorized
+402 payment requred
+403 forbidden
+404 not found
+405 method not allowed
+
+
+2) PROFILER
+---------------
+Java profilers are the finest tools for understanding the behavior and troubleshooting the performance issues of the Java application
+- HEAP ALLOCATION
+- GARBAGE COLLECTION
+- MEMORY ALLOCATION
+- WE CAN IMPROVE INTERNAL PERFORMANCE.LIKE MEMORY LEAKAGE OR OTHER ASPECTS
+
+profilers help us to know the status of the JVM execution at the byte code level.
+
+3) finalize
+--------------------
+always calls just before the deletion/destroying the object which is eligible for Garbage Collection, so as to perform clean-up activity. Clean-up activity means closing the resources associated with that object like Database Connection, Network Connection or we can say resource de-allocation.
+
+            //override finalize method
+            protected void finalize() throws Throwable
+                {
+                    try {
+
+                        System.out.println("inside demo's finalize()");
+                    }
+                    catch (Throwable e) {
+
+                        throw e;
+                    }
+                    finally {
+
+                        System.out.println("Calling finalize method"
+                                        + " of the Object class");
+
+                        // Calling finalize() of Object class
+                        super.finalize();
+                    }
+                }
+
+4) garbage collector algo (Mark & Sweep, Series & parallel GC, Full and partial GC)
+-----------------------------------------------------------------------------------------------------
+https://howtodoinjava.com/java/garbage-collection/revisiting-memory-management-and-garbage-collection-mechanisms-in-java/
+Garbage collection is the mechanism used in Java to deallocate unused memory
+
+Mark & Sweep, Series
+        It is initial and very basic algorithm which runs in two stages:
+
+        Marking live objects – find out all objects that are still alive.
+        Removing unreachable objects – get rid of everything else – the supposedly dead and unused objects.
+
+)Normal deletion - hole create in memory and memory is fragment.
+)compact deletion -  move referenced and unreferenced memory together , so that unreferenced memory used together . it is not cause outofmemory exception
+
+)How to improve memory utilization in Java
+    Do not allocate excessive memory. Allocate memory only just as much needed. This is specially applicable to Java arrays.
+    Don’t hold on to references. Once the object is used and no longer needed, assign null reference to it.
+    Find and resolve memory leaks
+    Do system profiling on each release to verify memory bumps
+    Do not rely on System.gc() to run garbage collection
+
+
+5) Blue green deployments
+-  reduces downtime
+-  functionality break
+
+two parallel production env running.let say blue env handle traffic and green is idle.
+Whenever new functionality added deployments done in green env and some specific user redirect to green env so that thy can TEST
+                     USER request
+   load balancer   ------- ----------production (BLUE)
+                  |  TEST REQUEST
+                   ----------------- production COPY (GREEN)
+
+6) java 8
+ 1) lambda expression - easy to development and easy to read code
+        interface MathOperation {
+          int operation(int a, int b);
+        }
+        MathOperation addition = (int a, int b) -> a + b;
+
+        private int operate(int a, int b, MathOperation mathOperation) {
+            return mathOperation.operation(a, b);
+        }
+ 2) Method reference - Method references help to point to methods by their names. A method reference is described using "::" symbol
+    System.out::println;
+
+ 3) Functional Interface - A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. For example, a Comparable interface with a single method ‘compareTo’ is used for comparison purpose
+
+        interface Square
+        {
+            int calculate(int x);
+        }
+        Square s = (int x)->x*x;
+        int ans = s.calculate(a);
+
+
+        eval(list, n-> n%2 == 0 );
+        public static void eval(List<Integer> list, Predicate<Integer> predicate)
+            for(Integer n: list) {
+                if(predicate.test(n)) {
+                    System.out.println(n + " ");
+                }
+            }
+        }
+
+4) Interface - default class
+       interface Vehicle {
+            //can override
+            default void print() {
+                System.out.println("I am a vehicle!");
+            }
+            //Not override just hide if found in child class also
+            static void blowHorn() {
+                System.out.println("Blowing horn!!!");
+            }
+       }
+
+5) Stream - process data like we process data in sql and mysql
+   steam vs parallelStream - stream process data sequentially in single cpu core , while parallelStream process data in different core result faster then stream.
+
+   List<String> strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
+   List<String> filtered = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());// return list
+   int count = strings.stream().filter(string -> string.isEmpty()).count(); // return count
+   String mergedString = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.joining(", ")); // return string
+
+
+   List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+   List<Integer> squaresList = numbers.stream().map( i -> i*i).distinct().collect(Collectors.toList());
+
+
+
+-) solid principals
+
+6) optional class - To avoid abnormal termination, we use the Optional class. In the following example, we are using Optional. So, our program can execute without crashing.
+
+        String[] words = new String[10];
+        Optional<String> checkNull =
+                      Optional.ofNullable(words[5]);
+        if (checkNull.isPresent()) {
+            String word = words[5].toLowerCase();
+            System.out.print(word);
+        } else
+            System.out.println("word is null");
+
+7-versioning in java - https://csis.pace.edu/~bergin/dcs/versioning/index.html
+8-singleton class and prevent singleton from clone , serializable and reflection - https://www.geeksforgeeks.org/prevent-singleton-pattern-reflection-serialization-cloning/?ref=rp
+
+8) average employee salary using steam;
+solid property
+
+9)synchronize , synchronize block
+10) thread 1 - odd , thread 2 - even ,  print 1,2,3,4,5,
+11) object method
+12) user thread and daemon thread
+13) seralizable and unserializable
+14) volatile synchronize
+15) callable future
+16) thread create (methods)
+17) thread t1 = new thread(new runnable(){
+  void run(){
+      sop("helllo wrold")
+  }
+})
+
+using lamda expression
