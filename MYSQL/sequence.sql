@@ -1,0 +1,1 @@
+create table emp (eid bigint(8) , name varchar(255) , salary bigint(8));
