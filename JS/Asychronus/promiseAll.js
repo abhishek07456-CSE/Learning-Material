@@ -13,7 +13,27 @@ let promise2 = new Promise((resolve,reject)=>{
      resolve("world");
  },7000);
 });
-let promise = Promise.all([promise1,promise2]);
+
+let promise3 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        reject("failed");
+    },7000);
+   });
+let promise = Promise.all([promise1,promise2,promise3]);
+
+
 promise
-.then((results)=>results.forEach(element => {console.log(element);}))
-.catch((e) => {console.log("some error")});
+.finally(() => {
+    console.log("execution done");
+    return 1;
+})
+.then(
+    (results)=> {
+        results.forEach(element => {console.log(element);})
+        return 2;
+    }
+).catch((e) => {
+    console.log("some error")
+      return 3;
+})
+

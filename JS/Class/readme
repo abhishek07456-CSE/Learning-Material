@@ -1,0 +1,39 @@
+classes basically template for read world enity where we can define intial state and methods to change state.
+
+
+https://javascript.info/class
+
+- people consfue between function have same peoperty as class
+First, a function created by class is labelled by a special internal property [[IsClassConstructor]]: true. 
+
+- we can call function without new keywork but not in class
+- Classes always use strict. All code inside the class construct is automatically in strict mode.
+- Class methods are non-enumerable. A class definition sets enumerable flag to false for all methods in the "prototype".
+     That’s good, because if we for..in over an object, we usually don’t want its class methods.
+
+
+
+/*
+Previously, our classes only had methods.
+
+“Class fields” is a syntax that allows to add any properties.
+
+For instance, let’s add name property to class User:
+
+class User {
+  name = "John"; same as constructor this.name
+
+  sayHi() {
+    alert(`Hello, ${this.name}!`);
+  }
+}
+
+new User().sayHi(); // Hello, John!
+So, we just write " = " in the declaration, and that’s it.
+
+The important difference of class fields is that they are set on individual objects, not User.prototype:
+*/
+
+
+
+

@@ -1,0 +1,31 @@
+Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.
+
+https://www.freecodecamp.org/news/higher-order-functions-in-javascript-explained/
+- Higher order function basically use for provide abstraction - to simplify code/readblity
+
+When working with arrays, you can use the map(), reduce(), filter(), and sort() functions to manipulate and transform data in an array.
+When working with objects, you can use the Object.entries() function to create a new array from an object.
+
+
+adg:
+
+Higher order function helps to increase the code reusability, improve the readability and make the code more efficient.
+
+
+REALD EG.
+
+for request POST/PATCH/DELETE we can use higher order
+
+POST = (body) => {
+
+}
+delete = (id) => {
+
+}
+function request(data , methodCallback){
+    //set commong heder property
+    // set auth method
+}
+
+request(data , POST);
+request(Data, delete)

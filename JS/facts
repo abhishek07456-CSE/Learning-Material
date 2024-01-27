@@ -1,0 +1,26 @@
+===============
+
+
+https://www.freecodecamp.org/news/guide-to-javascript-promises/
+why aysnc faster then callback
+- event loop first resolve microsrTask queue then MacroTaskQuee
+
+microsrTask (Job queue)
+     - process.NextTick
+    -  prmise callback
+    
+macroTaskQeue (Task Queue)
+    - setTimout,setInterval
+
+Promise.resolve("This is a resolved value").then(console.log);
+setTimeout(console.log, 0, "This is a value after the timeout");
+console.log("This is a normal log");
+
+output =>
+/*
+This is a normal log
+This is a resolved value
+undefined
+
+This is a value after the timeout
+*/

@@ -1,0 +1,25 @@
+- Garbage collector work automatically
+- The main concept of memory management in JavaScript is reachability. 
+- it's work on mark and sweep
+- if no incoming reference then JS engine delete ref from mermory
+Garbage collection in JavaScript is the automatic process of managing memory by freeing up unused memory no longer needed.
+
+
+let a = { "key" : value }
+
+let b = a
+
+a= null;
+
+here key is still used in b so it's not deleted from memory unit set b = null.
+
+
+js engine optimisation 
+
+Generational collection – objects are split into two sets: “new ones” and “old ones”. In typical code, many objects have a short life span: they appear, do their job and die fast, so it makes sense to track new objects and clear the memory from them if that’s the case. Those that survive for long enough, become “old” and are examined less often.
+
+Idle-time collection – the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
+
+
+
+The GC root in JavaScript is the starting point for the garbage collector's traversal of objects in memory, typically including global variables.
